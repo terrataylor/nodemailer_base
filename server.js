@@ -22,6 +22,7 @@ app.post("/send", async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
+    // to: "terra.taylor@gmail.com",
     subject: subject || "New Contact Form Message",
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
@@ -31,7 +32,7 @@ app.post("/send", async (req, res) => {
     res.json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Failed to send email" });
+    res.status(500).json({ success: false, message: error });
   }
 });
 
